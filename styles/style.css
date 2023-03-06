@@ -1,0 +1,376 @@
+/* CSS Document */
+
+:root{
+
+  --color-sky: #98C4C5;
+  --color-cloud: #f7f7e4;
+  --floor: white;
+
+  --color-beige: #E6CB9E;
+  --color-brown: #C48566;
+
+  --kaaba-ring: #B86D43;
+  --kaaba-ring-dark: #764529;
+
+  --kaaba-color: #3A2538;
+  --kaaba-second-color: #161127;
+
+
+  --bg-beige: url(../images/windows.svg);
+  --bg-brown: url(../images/window2.svg);
+
+  --bg-tower:  url(../images/tower.svg);
+
+}
+
+*, *::after, *::before {
+  box-sizing:border-box;  
+}
+
+@media (prefers-color-scheme: dark) {
+
+  :root:not(.light-mode) {
+
+    --color-sky: #2a1f44;
+    --color-cloud: #918799;
+    --floor: rgb(195, 195, 195);
+  
+    --color-beige: #7f6d4d;
+    --color-brown: #5d3f30;
+
+    --kaaba-ring: #654017;
+    --kaaba-ring-dark: #412515;
+
+    --kaaba-color: #221521;
+    --kaaba-second-color: #000000;
+
+    --bg-beige: url(../images/dark-beige-window.svg);
+    --bg-brown: url(../images/dark-brown-window.svg);
+
+    --bg-tower:  url(../images/dark-tower.svg);
+  }
+
+
+  /* Moon */
+
+  :root:not(.light-mode)  .moon { 
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    box-shadow: 1rem .5rem 0 0#8d8727;
+    position: absolute;
+    top: 5em;
+    left: 5em;
+    z-index: -10;
+  }
+
+}
+
+
+html{
+  font-family: "Cairo", sans-serif;
+}
+
+body {
+  margin:0;
+  width: 100vw;
+  height: 100vh;
+  background-image:linear-gradient( to top, var(--floor) 30vh, var(--color-sky) 100vh);
+  overflow: hidden;
+}
+
+/* ----------------- Header -----------------*/
+
+header{
+  margin-top: 3em;
+}
+
+h1, h2{
+  background: none;
+  text-align: center;
+  color: white;
+  margin: 0;
+}
+
+button{
+  background-image: url(../images/dark-mode.svg);
+  background-size: cover;
+  background-position-x: 71vh;
+  background-position-y: 53.6vh;
+  background-color: #3838385e;
+  width: 4em;
+  height: 4em;
+  border-radius: 50%;
+  position: absolute;
+  top: 5em;
+  right: 5em;
+
+
+}
+
+/* Clouds*/
+
+/*Time to finalise the cloud shape*/
+.cloud {
+	width: 200px; height: 60px;
+	background: var(--color-cloud);
+	border-radius: 200px;
+	position: relative; 
+  z-index: -5;
+}
+
+.cloud:before, .cloud:after {
+	content: '';
+	position: absolute; 
+	background: var(--color-cloud);
+	width: 100px; height: 80px;
+	position: absolute; top: -15px; left: 10px;
+	border-radius: 100px;
+	transform: rotate(30deg);
+}
+
+.cloud:after {
+	width: 120px; height: 120px;
+	top: -55px; left: auto; right: 15px;
+}
+
+/*Time to animate*/
+.x1 {
+  left: 1100px; top: 150px;
+	animation: moveclouds 65s linear infinite;
+}
+
+/*variable speed, opacity, and position of clouds for realistic effect*/
+.x2 {
+	left: 1200px;
+	
+	transform: scale(0.6);
+	opacity: 0.6; /*opacity proportional to the size*/
+	
+	/*Speed will also be proportional to the size and opacity*/
+	/*More the speed. Less the time in 's' = seconds*/
+	animation: moveclouds 55s linear infinite;
+}
+
+.x3 {
+	left: 1000px; top: -200px;
+	
+	transform: scale(0.8);
+	opacity: 0.8; /*opacity proportional to the size*/
+	animation: moveclouds 40s linear infinite;
+}
+
+.x4 {
+	left: 500px; top: 70px;
+	
+	-webkit-transform: scale(0.75);
+	-moz-transform: scale(0.75);
+	transform: scale(0.75);
+	opacity: 0.75; /*opacity proportional to the size*/
+	animation: moveclouds 38s linear infinite;
+}
+
+.x5 {
+	left: -180px; top: -150px;
+	transform: scale(0.8);
+	opacity: 0.8; /*opacity proportional to the size*/
+	
+	animation: moveclouds 30s linear infinite;
+}
+
+@keyframes moveclouds {
+	0% {margin-left: 1000px;}
+	100% {margin-left: -1000px;}
+}
+
+
+/* ----------------- Main -----------------*/
+
+
+/* Moskee */
+article:nth-of-type(1) > div:nth-of-type(1), article:nth-of-type(1) > div:nth-of-type(2){
+  width: 100vw;
+  height: 10%;
+  position: absolute;
+  left: 0;
+  background-repeat: repeat;
+  background-size: 2.5em 6em;
+  background-position-y: 25%;
+}
+
+article:nth-of-type(1) > div:nth-of-type(1){
+  background-color: var(--color-beige);
+  top: 30em;
+  background-image: var(--bg-beige);
+}
+
+article:nth-of-type(1) > div:nth-of-type(2){
+  background-color: var(--color-brown);
+  top: 37em;
+  background-image: var(--bg-brown);
+}
+
+section{
+  position: absolute;
+  top: 1em;
+  z-index: -1;
+  width:  8em;
+  height: 30em;
+  background-image: var( --bg-tower);
+}
+
+section:nth-of-type(1){
+  right: 28vw;
+}
+
+section:nth-of-type(2){
+
+  left: 28vw;
+}
+
+/* ----------------- Draaiende Kubus  ----------------- */
+
+/* bron: https://www.sinds1971.nl/cssvoordedames/8-animations.html */
+
+article:nth-of-type(2){
+  position: relative;
+  top: 11em;
+}
+
+/* kubus parent */
+.kubus{
+  --maat: 15em;
+  --draaiTijd: 15s;
+  position: absolute;
+  width: var(--maat);
+  height: var(--maat);
+  left: calc(50% - var(--maat) / 2 );
+  top: calc(50% - var(--maat) / 2 );
+  perspective-origin: center calc(var(--maat) / 4 );
+  perspective: calc(var(--maat) * 3 );
+  transform-style: preserve-3d;
+}
+
+/* kubus vlakte */
+.kubus > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(135deg,var(--kaaba-color) 25%,var(--kaaba-second-color) 75%);
+  animation: kubus var(--draaiTijd) linear infinite paused;
+
+}
+
+/* Goude band om kubus */
+.kubus > div::after {
+  content: "";
+  position: absolute;
+  top: 3em;
+  background-image: linear-gradient(135deg, var(--kaaba-ring) 50%, var(--kaaba-ring-dark) 75%);
+  width: var(--maat);
+  padding: 1em;
+}
+
+.kubus > div:nth-of-type(1) > .deur{
+  position: absolute;
+  bottom: 0;
+  left: 1em;
+  height: 8em;
+  width: 4em;
+  background-image: linear-gradient(135deg,var(--kaaba-ring)  25%,var(--kaaba-ring-dark) 75% );
+}
+
+.kubus > div:nth-of-type(1) {
+  animation-delay: calc(var(--draaiTijd) / -4 * 0);
+
+}
+
+.kubus > div:nth-of-type(2) {
+  animation-delay: calc(var(--draaiTijd) / -4 * 1);
+}
+
+.kubus> div:nth-of-type(3) {
+  animation-delay: calc(var(--draaiTijd) / -4 * 2);
+}
+
+.kubus > div:nth-of-type(4) {
+  animation-delay: calc(var(--draaiTijd) / -4 * 3);
+}
+
+@keyframes kubus{
+  0% {
+    transform: rotateY(0turn) translateZ(calc(var(--maat) / 2));
+  }
+  100% {
+    transform: rotateY(1turn) translateZ(calc(var(--maat) / 2));
+  }
+}
+
+.kubus:hover div {
+	animation-play-state:running;
+}
+
+/* --------------- Group moslims --------------- */
+
+article:nth-of-type(3){
+  background-image: url(../images/Group3.png);
+  background-repeat: repeat;
+  width: 120%;
+  background-size: cover;
+  height: 28em;
+  position: relative;
+  top: 13em;
+}
+
+/* ---------------  Person --------------- */
+
+.person{
+  background-image: url(../images/person.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 5em; 
+  height: 3em;
+  position: relative;
+  top: 152px;
+  z-index: -1;
+}
+
+
+.first{
+  left: 1300px; 
+  top: 300 px;
+	animation: walkingPerson 65s linear infinite;
+} 
+
+.second{
+  left: 1200px;
+  top: 324px;
+	animation: walkingPerson 65s linear infinite;
+} 
+
+.third{
+  left: 1100px; 
+  top: 200px;
+	animation: walkingPerson 65s linear infinite;
+  z-index: 1;
+} 
+
+.fourth{
+  left: 1000px; 
+  top: 180px;
+	animation: walkingPerson 65s linear infinite;
+  z-index: 1;
+} 
+
+.fifth{
+  left: 1300px; 
+  bottom: 200px;
+  animation: walkingPerson 65s linear infinite;
+  z-index: 1;
+} 
+
+@keyframes walkingPerson {
+	0% {margin-left: -1300px;}
+	100% {margin-left: 650px;}
+}
+
